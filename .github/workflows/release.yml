@@ -1,0 +1,41 @@
+name: Build & Release ZIP
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          coverage: none
+
+      - name: Composer (optional)
+        run: |
+          if [ -f wp-reset-pro/composer.json ]; then
+            cd wp-reset-pro
+            composer install --no-dev --prefer-dist --no-progress || true
+            composer dump-autoload -o || true
+          fi
+
+      - name: Build ZIP
+        run: |
+          bash scripts/build.sh
+          ls -lah
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            wp-reset-pro-*.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

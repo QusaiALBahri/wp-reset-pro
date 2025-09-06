@@ -1,0 +1,17 @@
+# Node & PHP tooling
+node_modules/
+vendor/
+composer.lock
+
+# IDE
+.vscode/
+.idea/
+
+# Build artifacts
+build/
+dist/
+*.zip
+
+# OS
+.DS_Store
+Thumbs.db

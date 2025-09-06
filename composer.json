@@ -1,0 +1,21 @@
+{
+  "name": "yourco/wp-reset-pro",
+  "description": "Safely perform full or partial resets of a WordPress site with backups, scheduling, and audit history.",
+  "type": "wordpress-plugin",
+  "license": "GPL-2.0-or-later",
+  "require": {
+    "php": ">=8.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "WPResetPro\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Qusai Omar AlBahri",
+      "email": "qusai@albahri.org",
+      "homepage": "https://www.albahri.org"
+    }
+  ]
+}
